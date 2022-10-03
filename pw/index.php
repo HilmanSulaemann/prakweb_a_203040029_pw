@@ -1,22 +1,11 @@
 <?php
-// koneksi ke database
-$conn = mysqli_connect("localhost", "root", "", "prakweb_a_203040029_pw");
+session_start();
 
-// ambil dari tabel film / query
-$result = mysqli_query($conn, "SELECT * FROM buku");
+require 'php/functions.php';
+$buku = query("SELECT * FROM buku");
 
-// ubah data ke dalam array
-// $row = mysqli_fetch_row($result); // array numerik
-// $row = mysqli_fetch_assoc($result); // array associative
-// $row = mysqli_fetch_array($result); // keduanya
-$rows = [];
-while ($row = mysqli_fetch_assoc($result)) {
-  $rows[] = $row;
-}
-// tampung ke variabel buku
-$buku = $rows;
+
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,6 +21,7 @@ $buku = $rows;
 
   <h1>Daftar Buku Mahasiswa Unpas</h1>
 
+  <a href="php/tambah.php">Tambah Buku</a>
   <table border="1" cellpading="10" cellspacing="0">
     <tr>
       <th>#</th>
@@ -40,18 +30,26 @@ $buku = $rows;
       <th>Penulis</th>
       <th>Penerbit</th>
       <th>Harga</th>
+      <th>#</th>
 
     </tr>
     <?php $i = 1; ?>
-    <?php foreach ($buku as $row) : ?>
+    <?php foreach ($buku as $bk) : ?>
       <tr>
-        <td><?= $i++; ?></td>
-        <td><img src="gambar/<?= $row["gambar"]; ?>" alt="" width="100"></td>
-        <td><?= $row["nama"]; ?> </td>
-        <td><?= $row["penulis"]; ?></td>
-        <td><?= $row["penerbit"]; ?> </td>
-        <td><?= $row["harga"]; ?> </td>
+        <td><?= $i; ?></td>
+        <td><img src="gambar/<?= $bk["gambar"]; ?>" alt="" width="100"></td>
+        <td><?= $bk["nama"]; ?> </td>
+        <td><?= $bk["penulis"]; ?></td>
+        <td><?= $bk["penerbit"]; ?> </td>
+        <td><?= $bk["harga"]; ?> </td>
+        <td>
+          <center>
+            <a href="php/ubah.php?id=<?= $bk["id"]; ?>" onclick="return confirm('Ubah Data??')" class="btn btn-primary mt-4">Ubah</a>
+            <a href="php/hapus.php?id=<?= $bk["id"]; ?>" onclick="return confirm('Hapus Data??')" class="btn btn-danger mt-3">Hapus</a>
+          </center>
+        </td>
       </tr>
+      <?php $i++; ?>
     <?php endforeach; ?>
   </table>
 
