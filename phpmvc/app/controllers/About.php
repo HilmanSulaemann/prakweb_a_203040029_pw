@@ -1,10 +1,10 @@
 <?php
 
-class About
+class About extends Controller
 {
-  public function index($nama = 'Edward', $pekerjaan = 'Ui UX Design')
+  public function index($nama = 'Edward', $pekerjaan = 'Ui Ux Design', $umur = 32)
   {
-    echo "Halo, Nama Saya $nama, saya adalah seorang $pekerjaan";
+    echo "Halo, nama Saya $nama, saya adalah seorang $pekerjaan. Saya berumur $umur tahun.";
   }
   public function page()
   {
