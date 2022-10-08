@@ -9,6 +9,20 @@ class Mahasiswa_model
     $this->db = new Database;
   }
 
+
+  public function getAllMahasiswa()
+  {
+    $this->db->query('SELECT * FROM ' . $this->table);
+    return $this->db->resultSet();
+  }
+  public function getMahasiswaById($id)
+  {
+    $this->db->query('SELECT * FROM mahasiswa ' . $this->table . ' WHERE id=:id');
+    $this->db->bind('id', $id);
+    return $this->db->single();
+  }
+}
+
   // private $mhs = [
   //  //[
   //  "nama" => "Hilman Sulaeman",
@@ -23,15 +37,3 @@ class Mahasiswa_model
   //  "jurusan" => "Teknik Informatika"
   //]
   //];
-  public function getAllMahasiswa()
-  {
-    $this->db->query('SELECT * FROM ' . $this->table);
-    return $this->db->resultSet();
-  }
-  public function getMahasiswaById($id)
-  {
-    $this->db->query('SELECT * FROM mahasiswa ' . $this->table . ' WHERE id=:id');
-    $this->db->bind('id', $id);
-    return $this->db->single();
-  }
-}

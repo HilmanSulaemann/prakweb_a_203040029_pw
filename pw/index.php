@@ -45,7 +45,7 @@ $buku = query("SELECT * FROM buku");
         <td>
           <center>
             <a href="php/ubah.php?id=<?= $bk["id"]; ?>" onclick="return confirm('Ubah Data??')" class="btn btn-primary mt-4">Ubah</a>
-            <a href="php/hapus.php?id=<?= $bk["id"]; ?>" onclick="return confirm('Hapus Data??')" class="btn btn-danger mt-3">Hapus</a>
+            <a href="phphapus.php?id=<?= $bk["id"]; ?>" onclick="return confirm('Hapus Data??')" class="btn btn-danger mt-3">Hapus</a>
           </center>
         </td>
       </tr>
